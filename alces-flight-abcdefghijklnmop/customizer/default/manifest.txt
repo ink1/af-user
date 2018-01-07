@@ -1,0 +1,3 @@
+configure.d/ht_disble.sh
+configure.d/packages.sh
+configure.d/user.sh

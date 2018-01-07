@@ -100,9 +100,9 @@ You need to adapt 'cf_create.py' to your needs.
 1. Set 'custom_bucket' to your own bucket replacing "alces-flight-abcdefghijklnmop"
 1. Set 'addr' to your own email notification address
 
-Go to AWS Lambda console and create 'cf-create' function with S3 trigger monitoring your user bucket ("AF-users-eu-west-2" in our case)
-
 ### cf-create lambda
+
+Go to AWS Lambda console and create 'cf-create' function with S3 trigger monitoring your user bucket ("AF-users-eu-west-2" in our case) for 'cf-create' suffix.
 
 * Suffix: cf-create
 * Prefix: home/
@@ -113,7 +113,9 @@ Go to AWS Lambda console and create 'cf-create' function with S3 trigger monitor
 * Basic settings - Timeout: 5 mins
 * Save
 
-### cf-create lambda
+### cf-delete lambda
+
+Similarly create 'cf-delete' function with S3 trigger monitoring your user bucket for 'cf-delete' suffix.
 
 * Suffix: cf-delete
 * Prefix: home/

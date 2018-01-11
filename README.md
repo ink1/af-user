@@ -1,5 +1,7 @@
 # Quick start guide
 
+[Further details and background](https://www.slideshare.net/IgorKozin/running-hpc-workloads-on-aws-using-alces-flight)
+
 This quick start guide is for setting up an unprivileged AWS user for running Alces Flight (AF) clusters on Amazon cloud.
 Instead giving the privileges required to start a cluster to a user, we will give them to AWS Lambda and use trigers to activate Lambdas.
 

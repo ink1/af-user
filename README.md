@@ -3,7 +3,7 @@
 [Further details and background](https://www.slideshare.net/IgorKozin/running-hpc-workloads-on-aws-using-alces-flight)
 
 This quick start guide is for setting up an unprivileged AWS user for running Alces Flight (AF) clusters on Amazon cloud.
-Instead giving the privileges required to start a cluster to a user, we will give them to AWS Lambda and use trigers to activate Lambdas.
+Instead of giving the privileges required to start a cluster to a user, we will give them to AWS Lambdas and use trigers to activate them.
 
 * AWS trigger: watch for *.cf-create and *.cf-delete files in S3 bucket belonging to users
 * CLUSTERNAME.cf-create triggers AWS Lambda which
@@ -16,6 +16,31 @@ Instead giving the privileges required to start a cluster to a user, we will giv
   1. Kills the CloudFormation stack
   1. Deletes CLUSTERNAME.cf-delete and creates CLUSTERNAME.cf-deleted
 * Unfortunately Lambda is currently limited to 5 mins and therefore the configuration file has to be re-issued; this does not lead to a problem because the stack name is unique (it has to be)
+
+The cluster configuration exposed to the users is really simple and allows them to get on with their job quickly.
+Here is an example of a cluster configuration file (.cf-create is a JSON file):
+```
+{
+    "ComputeInstanceType": "other", 
+    "ComputeSpotPrice": "0.03", 
+    "ComputeInstanceTypeOther": "r4.large-2C-15.25GB", 
+    "MasterSystemVolumeSize": "16", 
+    "MasterInstanceType": "other", 
+    "ComputeMaxNodes": "25", 
+    "MasterInstanceTypeOther": "r4.large-2C-15.25GB", 
+    "ComputeInitialNodes": "0", 
+    "AutoscalingPolicy": "enabled"
+}
+```
+
+The content of cf-delete file is not read and it can be blank.
+
+Cluster image customisation scripts are located in a special bucket in ```customizer/default/configure.d``` (see examples in this repo).
+They may be adapted as necessary. 
+Furthermore, user specific customisation can be created in ```customizer/<USERID>/configure.d``` and, in fact, it has to be provided for [cf-create.py lambda to work](https://github.com/ink1/af-user/blob/master/lambda/cf_create.py#L34). 
+There is nothing preventing you to expose these configuration scripts to the users if necessary.
+
+# Installation
 
 ## Create S3 bucket
 

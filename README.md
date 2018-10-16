@@ -23,6 +23,8 @@ Instead of giving the privileges required to start a cluster to a user, we will 
   1. Deletes CLUSTERNAME.cf-delete and creates CLUSTERNAME.cf-deleted
 * Unfortunately Lambda is currently limited to 5 mins and therefore the configuration file has to be re-issued; this does not lead to a problem because the stack name is unique (it has to be)
 
+CLUSTERNAME must be limited to ```[a-zA-Z0-9][-a-zA-Z0-9]```.
+
 The cluster configuration exposed to the users is really simple and allows them to get on with their job quickly.
 Here is an example of a cluster configuration file (.cf-create is a JSON file):
 ```

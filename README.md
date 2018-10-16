@@ -1,3 +1,9 @@
+Update: As of 10 Oct 2018, AWS Lambda can run up to 15 min (Hooray!) and therefore this max value should be used when setting 
+up cf-create lambda below instead of 5 min as before:
+```
+Basic settings - Timeout: 15 mins
+```
+
 # Quick start guide
 
 [Further details and background](https://www.slideshare.net/IgorKozin/running-hpc-workloads-on-aws-using-alces-flight)
@@ -137,7 +143,7 @@ Go to AWS Lambda console and create 'cf-create' function with S3 trigger monitor
 * Runtime - Python 2.7.
 * Add the code from cf-create.py (leave handler as lambda_function.lambda_handler).
 * Execution role - Existing role: lambda-cloudformation-role
-* Basic settings - Timeout: 5 mins
+* Basic settings - Timeout: 15 mins
 * Save
 
 ### cf-delete lambda
